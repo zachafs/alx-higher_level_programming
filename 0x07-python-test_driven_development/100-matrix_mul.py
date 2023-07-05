@@ -25,17 +25,17 @@ def matrix_mul(m_a, m_b):
     if m_b == [] or m_b == [[]]:
         raise ValueError("m_b can't be empty")
 
-    row_len = len(m_a[0])
+    row_len_a = len(m_a[0])
     for row in m_a:
-        if len(row) != row_len:
+        if len(row) != row_len_a:
             raise TypeError("each row of m_a must be of the same size")
 
-    row_len = len(m_b[0])
+    row_len_b = len(m_b[0])
     for row in m_b:
-        if len(row) != row_len:
+        if len(row) != row_len_b:
             raise TypeError("each row of m_b must be of the same size")
 
-    a_col = len(m_a[0])
+    a_col = row_len_a
     b_row = len(m_b)
 
     if a_col != b_row:
