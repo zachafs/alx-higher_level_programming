@@ -5,7 +5,7 @@ Multiplies two matrices and returns the result.
 
 
 def matrix_mul(m_a, m_b):
-    """Return the matrix resulting of
+    """Return the matrix resulting from
     the multiplication of m_a and m_b."""
 
     if type(m_a) is not list:
@@ -25,37 +25,23 @@ def matrix_mul(m_a, m_b):
     if m_b == [] or m_b == [[]]:
         raise ValueError("m_b can't be empty")
 
+    row_len = len(m_a[0])
     for row in m_a:
-        for x in row:
-            if type(x) is not int and type(x) is not float:
-                raise TypeError("m_a should contain only integers or floats")
-    for row in m_b:
-        for x in row:
-            if type(x) is not int and type(x) is not float:
-                raise TypeError("m_b should contain only integers or floats")
+        if len(row) != row_len:
+            raise TypeError("each row of m_a must be of the same size")
 
-    row_len = []
-    for row in m_a:
-        row_len.append(len(row))
-    if not all(elem == row_len[0] for elem in row_len):
-            raise TypeError("each row of m_a must should be of the same size")
-    row_len = []
+    row_len = len(m_b[0])
     for row in m_b:
-        row_len.append(len(row))
-    if not all(elem == row_len[0] for elem in row_len):
-            raise TypeError("each row of m_b must should be of the same size")
+        if len(row) != row_len:
+            raise TypeError("each row of m_b must be of the same size")
 
-    a_col = 0
-    for col in m_a[0]:
-        a_col += 1
-    b_row = 0
-    for row in m_b:
-        b_row += 1
+    a_col = len(m_a[0])
+    b_row = len(m_b)
 
     if a_col != b_row:
         raise ValueError("m_a and m_b can't be multiplied")
 
-    result = [[0 for x in range(len(m_b[0]))] for y in range(len(m_a))]
+    result = [[0 for _ in range(len(m_b[0]))] for _ in range(len(m_a))]
 
     for i in range(len(m_a)):
         for j in range(len(m_b[0])):
