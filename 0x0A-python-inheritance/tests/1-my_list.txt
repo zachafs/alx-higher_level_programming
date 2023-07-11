@@ -1,0 +1,39 @@
+
+Importing the class:
+    >>> MyList = __import__('1-my_list').MyList
+
+checking subclass:
+    >>> issubclass(MyList, list)
+    True
+
+Sorting and printing empty list:
+    >>> list = MyList()
+    >>> list.print_sorted()
+    []
+
+Normal list:
+    >>> list.append(3)
+    >>> list.append(2)
+    >>> list.append(1)
+    >>> print(list)
+    [3, 2, 1]
+
+Sormal use of function:
+    >>> list.print_sorted()
+    [1, 2, 3]
+
+Sorting and printing negative numbers:
+    >>> list.append(-12)
+    >>> list.append(-1)
+    >>> print(list)
+    [3, 2, 1, -12, -1]
+    >>> list.print_sorted()
+    [-12, -1, 1, 2, 3]
+    >>> print(list)
+    [3, 2, 1, -12, -1]
+
+Wrong arguments:
+    >>> list.print_sorted(1)
+    Traceback (most recent call last):
+    	            ...
+    TypeError: print_sorted() takes 1 positional argument but 2 were given
