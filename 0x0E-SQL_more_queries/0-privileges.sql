@@ -1,8 +1,3 @@
 -- Lists all privileges of the users user_0d_1 and user_0d_2.
-SELECT
-  *
-FROM
-  mysql.user
-WHERE
-  User IN ('user_0d_1', 'user_0d_2')
-  AND Host = 'localhost';
+CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost' IDENTIFIED BY 'user_0d_1_pwd';
+GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost' WITH GRANT OPTION;
