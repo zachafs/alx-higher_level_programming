@@ -1,7 +1,9 @@
 #!/usr/bin/node
 
-// Import the add function from the 13-add module
-const add = require('./13-add').add;
+// Import the callMeMoby function from the 101-call_me_moby module
+const callMeMoby = require('./101-call_me_moby').callMeMoby;
 
-// Use the add function to perform addition
-console.log(add(3, 5));
+// Use the callMeMoby function to execute a function 3 times
+callMeMoby(3, function () {
+  console.log('C is fun');
+});
