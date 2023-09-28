@@ -1,15 +1,20 @@
 #!/bin/bash
 
-# Check if the is only one argument(the URL)
-if [ $# -ne 1 ]
-then
+# Check if the script is provided with exactly one argument (the URL)
+if [ $# -ne 1 ]; then
   echo "Usage: $0 <URL>"
   exit 1
 fi
 
-# Get the URL-form argument
-url=$1
+# Get the URL from the command-line argument
+url="$1"
 
-# Use curl to send a request URL,S response to body to a temporary file
-curl -sI "$url" | grep -i 'Content-Length' | awk '{print $2}'
+# Use curl to send a request to the URL and save the response body to a temporary file
+response=$(curl -s "$url")
+
+# Calculate the size of the response body in bytes
+size_in_bytes=$(echo -n "$response" | wc -c)
+
+# Display the size in bytes
+echo "$size_in_bytes"
 
