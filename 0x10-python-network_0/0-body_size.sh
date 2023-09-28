@@ -1,21 +1,15 @@
 #!/bin/bash
 
-# Check if the URL is provided
-if [ -z "$1" ]
+# Check if the is only one argument(the URL)
+if [ $# -ne 1 ]
 then
-    echo "Please provide a URL"
-    exit 1
+  echo "Usage: $0 <URL>"
+  exit 1
 fi
 
-# Send a request to the URL and store the response in a temporary file
-response=$(curl -s -w %{size_download} "$1")
+# Get the URL-form argument
+url=$1
 
-# Check if the response is empty
-if [ -z "$response" ]
-then
-    echo "Failed to get the response"
-    exit 1
-fi
+# Use curl to send a request URL,S response to body to a temporary file
+curl -sI "$url" | grep -i 'Content-Length' | awk '{print $2}'
 
-# Display the size of the body of the response in bytes
-echo "$response"
