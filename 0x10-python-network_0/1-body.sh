@@ -1,16 +1,7 @@
 #!/bin/bash
-# a script that sends a GET request to the URL passed in, and displays the body of the response
-if [ -z "$1" ]
-then
-    echo "Error: URL parameter is missing."
-    exit 1
+# a script that validates the input URL and sends a GET request to the validated URL, displaying the body of the response
+if [[ $1 =~ ^https?:// ]]; then
+    curl -s "$1" -X GET -L 
+else
+    echo "Invalid URL"
 fi
-
-response=$(curl -s "$1" -X GET -L)
-if [ $? -ne 0 ]
-then
-    echo "Error: Failed to retrieve the response from the URL."
-    exit 1
-fi
-
-echo "$response"
